@@ -2,13 +2,14 @@
   box-sizing: border-box;
 }
 
-/* TODO: add box shadow, cursor pointer */
+/* TODO: add box shadow, cursor pointer, center game container */
 
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -27,10 +28,11 @@ body {
 
 img {
   width: 80px;
-  height: 116.16px;
+  height: 116px;
+  cursor: pointer;
 }
 
-img.back {
+img.back-side {
   content: url('./cards/card-back.jpeg');
 }
 
@@ -43,7 +45,7 @@ img.back {
 .border {
   position: relative;
   width: 80px;
-  height: 116.16px;
+  height: 116px;
   border: 2px solid gold;
   border-radius: 5px;
   z-index: 1;
@@ -55,15 +57,16 @@ img.back {
   height: 100%;
 }
 
-.border img:nth-child(2) {
+.border > .played {
   transform: translateX(15px);
   z-index: -1;
 }
-.border img:nth-child(3) {
+
+.played ~ .played {
   transform: translateX(30px);
   z-index: -2;
 }
-.border img:nth-child(4) {
+.played ~ .played ~ .played {
   transform: translateX(45px);
   z-index: -3;
 }
@@ -73,14 +76,15 @@ img.back {
   position: absolute;
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   transform: rotate(var(--rotation));
 }
 
 .pile-1 {
   --rotation: 30deg;
 }
+
 .pile-1 .border {
   transform: rotate(-30deg);
 }
@@ -88,6 +92,7 @@ img.back {
 .pile-2 {
   --rotation: 60deg;
 }
+
 .pile-2 .border {
   transform: rotate(-60deg);
 }
@@ -95,6 +100,7 @@ img.back {
 .pile-3 {
   --rotation: 90deg;
 }
+
 .pile-3 .border {
   transform: rotate(-90deg);
 }
@@ -102,6 +108,7 @@ img.back {
 .pile-4 {
   --rotation: 120deg;
 }
+
 .pile-4 .border {
   transform: rotate(-120deg);
 }
@@ -109,6 +116,7 @@ img.back {
 .pile-5 {
   --rotation: 150deg;
 }
+
 .pile-5 .border {
   transform: rotate(-150deg);
 }
@@ -116,6 +124,7 @@ img.back {
 .pile-6 {
   --rotation: 180deg;
 }
+
 .pile-6 .border {
   transform: rotate(-180deg);
 }
@@ -123,6 +132,7 @@ img.back {
 .pile-7 {
   --rotation: 210deg;
 }
+
 .pile-7 .border {
   transform: rotate(-210deg);
 }
@@ -130,6 +140,7 @@ img.back {
 .pile-8 {
   --rotation: 240deg;
 }
+
 .pile-8 .border {
   transform: rotate(-240deg);
 }
@@ -137,6 +148,7 @@ img.back {
 .pile-9 {
   --rotation: 270deg;
 }
+
 .pile-9 .border {
   transform: rotate(-270deg);
 }
@@ -144,6 +156,7 @@ img.back {
 .pile-10 {
   --rotation: 300deg;
 }
+
 .pile-10 .border {
   transform: rotate(-300deg);
 }
@@ -151,10 +164,13 @@ img.back {
 .pile-11 {
   --rotation: 330deg;
 }
+
 .pile-11 .border {
   transform: rotate(-330deg);
 }
 
-.pile-center {
-  transform: translateY(calc(50% - 58.08px));
+.pile-13 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
