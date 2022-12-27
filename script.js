@@ -65,6 +65,7 @@ function checkGameProgress() {
     setTimeout(() => (modal.style.display = 'flex'), 500);
 }
 
+// Create Playing Card
 function createCardEl(cardName) {
   const cardEl = document.createElement('img');
   cardEl.src = `./cards/${cardName}.png`;
@@ -75,15 +76,22 @@ function createCardEl(cardName) {
   cardEl.addEventListener('click', () => {
     if (cardEl.classList.contains('back-side')) {
       cardEl.classList.remove('back-side');
+      // Add .flipping to trigger the animation
+      cardEl.classList.add('flipping');
       cardEl.draggable = true;
       if (cardEl.id === 'king') kingsRevealed++;
       totalCardsRevealed++;
       checkGameProgress();
     }
+    // Remove .flipping to prevent further animation triggers
+    cardEl.addEventListener('animationend', () => {
+      cardEl.classList.remove('flipping');
+    });
   });
   return cardEl;
 }
 
+//
 function populateDOM() {
   // Clear Piles
   if (!isFirstGame) piles.forEach((pile) => (pile.textContent = ''));
@@ -145,16 +153,3 @@ restart.addEventListener('click', startGame);
 
 // On Load
 startGame();
-
-/* TODO: 
-- fix drop function on kings
-- add cards sounds
-- rewrite pile and card ids, since id is unique
-- disble restart btn during shuffle 
-- add borders for piles
-- add imgs inside of a pile border
-- add soliter win animation (waterfall)
-- add flip card animation
-- add UI counter and timer
-- light up needed pile +-
-*/
