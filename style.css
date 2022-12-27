@@ -1,18 +1,8 @@
-* {
-  box-sizing: border-box;
-}
-
-/* TODO: add box shadow, cursor pointer, center game container */
-
-body {
-  margin: 0;
+html {
+  /* box-sizing: border-box; */
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  height: 100%;
+  position: relative;
   background: #093028; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -26,38 +16,123 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-img {
-  width: 80px;
-  height: 116px;
-  cursor: pointer;
+:root {
+  --r-offset: 0;
+  --radius: 0;
 }
 
-img.back-side {
-  content: url('./cards/card-back.jpeg');
+/* TODO: add box shadow, cursor pointer, center game container */
+
+body {
+  margin: auto;
+}
+
+a {
+  color: #000;
+}
+
+a:focus {
+  outline: none;
+}
+
+i {
+  cursor: pointer;
+  margin: 1rem 0.5rem;
+  font-size: 2.5rem;
+  opacity: 0.3;
+}
+
+i:hover {
+  opacity: 1;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  width: 500px;
+  height: 300px;
+  background: whitesmoke;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.menu-container {
+  margin: 0 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .game-container {
-  position: relative;
-  width: 770px;
-  height: 770px;
+  display: grid;
+  grid-template-areas: 'layer';
+  place-items: center;
+  background: transparent;
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
 }
 
-.border {
+.pile {
   position: relative;
+  grid-area: layer;
+  width: 80px;
+  height: 116px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+
+  --d: calc(var(--i) / var(--total));
+
+  --r-amount: 1turn;
+
+  --r: calc((var(--r-amount) * var(--d)) + var(--r-offset));
+
+  --transform: rotate(var(--r)) translate(var(--radius))
+    rotate(calc(-1 * var(--r)));
+
+  transform: var(--transform);
+  transition: transform 1.5s ease-in-out;
+}
+
+/* .pile:after {
+  content: '';
   width: 80px;
   height: 116px;
   border: 2px solid gold;
   border-radius: 5px;
-  z-index: 1;
-}
+  z-index: -1;
+} */
 
-.border img {
+img {
+  cursor: pointer;
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-.border > .played {
+img.played {
+  cursor: default;
+}
+
+img.back-side {
+  content: url('./cards/card-back.png');
+}
+
+.pile > .played {
   transform: translateX(15px);
   z-index: -1;
 }
@@ -70,107 +145,7 @@ img.back-side {
   transform: translateX(45px);
   z-index: -3;
 }
-
-.pile {
-  --rotation: 0;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  width: 95%;
-  height: 95%;
-  transform: rotate(var(--rotation));
-}
-
-.pile-1 {
-  --rotation: 30deg;
-}
-
-.pile-1 .border {
-  transform: rotate(-30deg);
-}
-
-.pile-2 {
-  --rotation: 60deg;
-}
-
-.pile-2 .border {
-  transform: rotate(-60deg);
-}
-
-.pile-3 {
-  --rotation: 90deg;
-}
-
-.pile-3 .border {
-  transform: rotate(-90deg);
-}
-
-.pile-4 {
-  --rotation: 120deg;
-}
-
-.pile-4 .border {
-  transform: rotate(-120deg);
-}
-
-.pile-5 {
-  --rotation: 150deg;
-}
-
-.pile-5 .border {
-  transform: rotate(-150deg);
-}
-
-.pile-6 {
-  --rotation: 180deg;
-}
-
-.pile-6 .border {
-  transform: rotate(-180deg);
-}
-
-.pile-7 {
-  --rotation: 210deg;
-}
-
-.pile-7 .border {
-  transform: rotate(-210deg);
-}
-
-.pile-8 {
-  --rotation: 240deg;
-}
-
-.pile-8 .border {
-  transform: rotate(-240deg);
-}
-
-.pile-9 {
-  --rotation: 270deg;
-}
-
-.pile-9 .border {
-  transform: rotate(-270deg);
-}
-
-.pile-10 {
-  --rotation: 300deg;
-}
-
-.pile-10 .border {
-  transform: rotate(-300deg);
-}
-
-.pile-11 {
-  --rotation: 330deg;
-}
-
-.pile-11 .border {
-  transform: rotate(-330deg);
-}
-
-.pile-13 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.played ~ .played ~ .played ~ .played {
+  transform: translateX(60px);
+  z-index: -4;
 }
