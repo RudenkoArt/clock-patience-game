@@ -63,7 +63,7 @@ i:hover {
   top: 0;
   left: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
@@ -104,10 +104,10 @@ i:hover {
 }
 
 .game-container {
+  position: relative;
   display: grid;
   grid-template-areas: 'layer';
   place-items: center;
-  background: transparent;
   width: calc(2 * var(--radius));
   height: calc(2 * var(--radius));
 }
@@ -129,8 +129,7 @@ i:hover {
   width: 80px;
   height: 116px;
   border-radius: 5px;
-  display: grid;
-  place-items: center;
+  z-index: 5;
 
   --d: calc(var(--i) / var(--total));
 

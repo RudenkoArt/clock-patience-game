@@ -247,8 +247,8 @@ function storeBestTime() {
 // Start Game
 function startNewGame() {
   currentPileId = 'king';
-  totalCardsMoved = 51;
-  kingsRevealed = 4;
+  totalCardsMoved = 0;
+  kingsRevealed = 0;
   modal.style.display = 'none';
   clearInterval(timer);
   time.textContent = 'Time: 00:00';
