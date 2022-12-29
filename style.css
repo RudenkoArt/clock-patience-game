@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
 html {
   /* box-sizing: border-box; */
   display: flex;
@@ -14,6 +16,9 @@ html {
     #237a57,
     #093028
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
 }
 
 :root {
@@ -25,6 +30,11 @@ html {
 
 body {
   margin: auto;
+  font-family: Play, sans-serif;
+}
+
+h3 {
+  margin: 0 0 0.5rem 0;
 }
 
 a {
@@ -61,11 +71,27 @@ i:hover {
 }
 
 .modal-content {
+  display: flex;
+  font-size: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   width: 500px;
   height: 300px;
   background: whitesmoke;
   border-radius: 15px;
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.play-again {
+  align-self: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.play-again:active {
+  transform: scale(0.95);
 }
 
 .menu-container {
@@ -84,6 +110,17 @@ i:hover {
   background: transparent;
   width: calc(2 * var(--radius));
   height: calc(2 * var(--radius));
+}
+
+.time-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+}
+
+.time {
+  font-size: 2.5rem;
 }
 
 .pile {
@@ -147,11 +184,11 @@ img.played {
 
 @keyframes flipping {
   0% {
-    transform: rotateY(-180);
+    transform: rotateY(-180deg);
     content: url('./cards/card-back.png');
   }
   50% {
-    transform: rotateY(-90deg);
+    transform: translateY(-30px) rotateY(-90deg);
   }
   100% {
     transform: rotateY(0deg);

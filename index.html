@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock Patience Game</title>
+    <link rel="icon" type="image/x-icon" href="icon.png" />
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
-    <title>Clock Patience</title>
   </head>
   <body>
     <!-- Modal Window -->
@@ -19,25 +20,31 @@
     <!-- Menu -->
     <div class="menu-container">
       <i class="fa-solid fa-rotate-right" id="restart" title="Restart"></i>
+      <i class="fa-solid fa-volume-high" id="mute" title="Mute"></i>
       <a href="https://www.wikihow.com/Play-Clock-Patience" target="_blank"
         ><i class="fa-regular fa-circle-question" title="Rules"></i
       ></a>
     </div>
+    <!-- Timer -->
+    <div class="time-container">
+      <h3 class="time"></h3>
+      <span id="best-time"></span>
+    </div>
     <!-- Game Container -->
     <div class="game-container" style="--total: 12">
-      <div class="pile pile-1" id="ace" style="--i: 1"></div>
-      <div class="pile pile-2" id="2" style="--i: 2"></div>
-      <div class="pile pile-3" id="3" style="--i: 3"></div>
-      <div class="pile pile-4" id="4" style="--i: 4"></div>
-      <div class="pile pile-5" id="5" style="--i: 5"></div>
-      <div class="pile pile-6" id="6" style="--i: 6"></div>
-      <div class="pile pile-7" id="7" style="--i: 7"></div>
-      <div class="pile pile-8" id="8" style="--i: 8"></div>
-      <div class="pile pile-9" id="9" style="--i: 9"></div>
-      <div class="pile pile-10" id="10" style="--i: 10"></div>
-      <div class="pile pile-11" id="jack" style="--i: 11"></div>
-      <div class="pile pile-12" id="queen" style="--i: 12"></div>
-      <div class="pile pile-13" id="king"></div>
+      <div class="pile" id="ace" style="--i: 1"></div>
+      <div class="pile" id="2" style="--i: 2"></div>
+      <div class="pile" id="3" style="--i: 3"></div>
+      <div class="pile" id="4" style="--i: 4"></div>
+      <div class="pile" id="5" style="--i: 5"></div>
+      <div class="pile" id="6" style="--i: 6"></div>
+      <div class="pile" id="7" style="--i: 7"></div>
+      <div class="pile" id="8" style="--i: 8"></div>
+      <div class="pile" id="9" style="--i: 9"></div>
+      <div class="pile" id="10" style="--i: 10"></div>
+      <div class="pile" id="jack" style="--i: 11"></div>
+      <div class="pile" id="queen" style="--i: 12"></div>
+      <div class="pile" id="king"></div>
     </div>
     <!-- Script -->
     <script src="script.js"></script>
