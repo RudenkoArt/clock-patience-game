@@ -23,6 +23,8 @@ let draggedItem;
 let isMuted = false;
 const cardFlipSound = new Audio('./sounds/card-flip.mp3');
 const cardDropSound = new Audio('./sounds/card-drop.mp3');
+const dealingSound = new Audio('./sounds/dealing.mp3');
+const shufflingSound = new Audio('./sounds/shuffling.wav');
 
 // Cards
 // prettier-ignore
@@ -195,6 +197,7 @@ function nextDealAnimation() {
   setTimeout(() => {
     body.style.pointerEvents = '';
   }, 3000);
+  if (!isMuted) shufflingSound.play();
   // Set Event Listener to one of the piles
   piles[0].addEventListener('transitionend', nextDealAnimationEnd);
 }
@@ -202,6 +205,7 @@ function nextDealAnimation() {
 function nextDealAnimationEnd() {
   setRootVarieble('--radius', '40vmin');
   setRootVarieble('--r-offset', '-0.25turn');
+  if (!isMuted) dealingSound.play();
   // Remove Event Listener
   piles[0].removeEventListener('transitionend', nextDealAnimationEnd);
 }
