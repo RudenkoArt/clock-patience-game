@@ -91,7 +91,6 @@ function showModal(hasWon) {
       ? [messageEl, yourTimeEl, bestTimeEl, breakEl, restartEl]
       : [messageEl, breakEl, restartEl])
   );
-  // Store Best Time
   // Show Modal
   modal.style.display = 'flex';
 }
@@ -120,6 +119,8 @@ function dragStart(e) {
 
 function allowDrop(e) {
   e.preventDefault();
+  // Change cursor for all Browsers
+  e.dataTransfer.dropEffect = 'copy';
 }
 
 function drop(e) {
