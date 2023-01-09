@@ -26,8 +26,6 @@ html {
   --radius: 0;
 }
 
-/* TODO: add box shadow, cursor pointer, center game container */
-
 body {
   margin: auto;
   font-family: Play, sans-serif;
@@ -156,7 +154,7 @@ img.flipping {
 }
 
 img.back-side {
-  content: url('./cards/card-back.png');
+  content: url('card-back.png');
 }
 
 img.played {
@@ -184,7 +182,7 @@ img.played {
 @keyframes flipping {
   0% {
     transform: rotateY(-180deg);
-    content: url('./cards/card-back.png');
+    content: url('card-back.png');
   }
   50% {
     transform: translateY(-30px) rotateY(-90deg);

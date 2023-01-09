@@ -1,0 +1,25 @@
+{
+  "name": "clock-patience-game",
+  "version": "1.0.0",
+  "description": "",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --no-scope-hoist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RudenkoArt/clock-patience-game.git"
+  },
+  "keywords": [],
+  "author": "Artur Rudenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RudenkoArt/clock-patience-game/issues"
+  },
+  "homepage": "https://github.com/RudenkoArt/clock-patience-game#readme",
+  "devDependencies": {
+    "parcel": "^2.8.2",
+    "parcel-reporter-static-files-copy": "^1.4.0"
+  }
+}

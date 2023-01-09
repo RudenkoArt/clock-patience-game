@@ -2,7 +2,7 @@ const { body } = document;
 const modal = document.querySelector('.modal');
 const piles = document.querySelectorAll('.pile');
 const restart = document.getElementById('restart');
-const mute = document.getElementById('mute');
+const volume = document.getElementById('volume');
 const time = document.querySelector('.time');
 const bestTimeEl = document.getElementById('best-time');
 
@@ -21,10 +21,10 @@ let draggedItem;
 
 // Sounds
 let isMuted = false;
-const cardFlipSound = new Audio('./sounds/card-flip.mp3');
-const cardDropSound = new Audio('./sounds/card-drop.mp3');
-const dealingSound = new Audio('./sounds/dealing.mp3');
-const shufflingSound = new Audio('./sounds/shuffling.wav');
+const cardFlipSound = new Audio('sounds/card-flip.mp3');
+const cardDropSound = new Audio('sounds/card-drop.mp3');
+const dealingSound = new Audio('sounds/dealing.mp3');
+const shufflingSound = new Audio('sounds/shuffling.wav');
 
 // Cards
 // prettier-ignore
@@ -141,7 +141,7 @@ function drop(e) {
 // Create Playing Card
 function createCardEl(cardName) {
   const cardEl = document.createElement('img');
-  cardEl.src = `./cards/${cardName}.png`;
+  cardEl.src = `img/${cardName}.png`;
   cardEl.draggable = false;
   cardEl.setAttribute('ondragstart', 'dragStart(event)');
   cardEl.setAttribute('name', cardName.slice(0, cardName.indexOf('_')));
@@ -202,6 +202,7 @@ function nextDealAnimation() {
   piles[0].addEventListener('transitionend', nextDealAnimationEnd);
 }
 
+// Trigger as soon as first transition has ended
 function nextDealAnimationEnd() {
   setRootVarieble('--radius', '40vmin');
   setRootVarieble('--r-offset', '-0.25turn');
@@ -210,6 +211,7 @@ function nextDealAnimationEnd() {
   piles[0].removeEventListener('transitionend', nextDealAnimationEnd);
 }
 
+// Choose which transition to trigger
 function dealCards() {
   if (isFirstGame) {
     firstDealAnimation();
@@ -218,30 +220,33 @@ function dealCards() {
   }
 }
 
+// Make Pile accessible to click
 function makePileAvailible(id) {
   piles.forEach((pile) => {
     pile.style.pointerEvents = pile.id === id ? '' : 'none';
   });
 }
 
+// Mute / unmute sounds, change volume icon
 function muteSounds() {
   isMuted = !isMuted;
   if (isMuted) {
-    mute.classList.replace('fa-volume-high', 'fa-volume-xmark');
-    mute.title = 'Unmute';
+    volume.classList.replace('fa-volume-high', 'fa-volume-xmark');
+    volume.title = 'Unmute';
   } else {
-    mute.classList.replace('fa-volume-xmark', 'fa-volume-high');
-    mute.title = 'Mute';
+    volume.classList.replace('fa-volume-xmark', 'fa-volume-high');
+    volume.title = 'Mute';
   }
 }
 
-// Store and get Best Time
+// Check and get Best time from the local storage
 function checkBestTime() {
   bestTimeEl.textContent = localStorage.getItem('BestTime')
     ? `Best Time: ${localStorage.getItem('BestTime')}`
     : 'Best Time: --:--';
 }
 
+// Store Best Time in the local storage
 function storeBestTime() {
   const currentTime = time.textContent.slice(-5);
   const bestTime = localStorage.getItem('BestTime');
@@ -283,7 +288,7 @@ window.addEventListener('dragend', (e) => {
 restart.addEventListener('click', startNewGame);
 
 // Sounds Off/On
-mute.addEventListener('click', muteSounds);
+volume.addEventListener('click', muteSounds);
 
 // On Load
 startNewGame();
